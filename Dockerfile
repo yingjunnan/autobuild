@@ -2,4 +2,4 @@ FROM registry.cn-beijing.aliyuncs.com/yingjunnan/zabbix:zabbix-server-mysql-5.0-
 # 
 USER root
 RUN yum install -y python3
-USER zabbix
+RUN pip3 install dingtalkchatbot
