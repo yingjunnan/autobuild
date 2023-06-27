@@ -1,8 +1,9 @@
 # 基于CentOS镜像
-FROM centos:latest
+FROM centos:centos7.9
 
 # 安装EPEL仓库
-RUN yum install -y epel-release
+RUN yum install -y wget
+RUN wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
 
 # 安装Nginx
 RUN yum install -y nginx
