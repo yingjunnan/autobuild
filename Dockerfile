@@ -26,7 +26,7 @@ RUN apt-get install -y \
 # COPY nginx.conf /etc/nginx/nginx.conf
 
 # 复制PHP-FPM配置文件
-# COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
+#  COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 
 # 设置工作目录
 WORKDIR /var/www/html
