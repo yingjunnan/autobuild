@@ -1,26 +1,14 @@
-# 基于CentOS镜像
-FROM centos:centos7.9
+# 使用官方的 php 镜像作为基础镜像
+FROM php:7.4-fpm
 
-# 安装EPEL仓库
-RUN yum install -y wget
-RUN wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
+# 安装 nginx
+RUN apt-get update && apt-get install -y nginx
 
-# 安装Nginx
-RUN yum install -y nginx
+# 将 nginx 配置文件复制到容器中
+# COPY nginx.conf /etc/nginx/
 
-# 安装PHP 7.4和相关扩展
-RUN yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
-    && yum install -y php php-fpm php-mysqlnd php-pgsql php-sqlite php-intl php-gd \
-       php-curl php-mbstring php-xml php-zip php-json php-ldap php-redis php-opcache
-
-# 复制Nginx配置文件
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# 复制PHP-FPM配置文件
-# COPY php-fpm.conf /etc/php-fpm.d/www.conf
-
-# 创建PHP配置目录
-RUN mkdir -p /etc/php/conf.d
+# 将 php 代码复制到容器中
+# COPY . /var/www/html/
 
 # 设置工作目录
 WORKDIR /var/www/html
@@ -28,7 +16,5 @@ WORKDIR /var/www/html
 # 暴露端口
 EXPOSE 80
 
-# 启动Nginx和PHP-FPM
-CMD sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php-fpm.conf \
-    && sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php.ini \
-    && php-fpm -D && nginx -g "daemon off;"
+# 启动 nginx
+CMD ["nginx", "-g", "daemon off;"]
