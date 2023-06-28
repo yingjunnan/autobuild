@@ -9,7 +9,7 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 
 # 安装必要的软件包
 RUN apt-get update && \
-    apt-get install -y nginx php-fpm php-pear php-dev libaio-dev \
+    apt-get install -y nginx unzip php-fpm php-pear php-dev libaio-dev \
     php-mysql php-redis && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
