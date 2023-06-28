@@ -13,6 +13,7 @@ RUN apt-get update && \
     php-mysql php-redis && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /usr/lib/oracle/12.2 && chmod 777 /usr/lib/oracle/12.2
 
 # 下载Oracle Instant Client安装包
 ADD https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip /tmp/
