@@ -19,6 +19,7 @@ ADD https://download.oracle.com/otn_software/linux/instantclient/19800/instantcl
 
 RUN mkdir -p /usr/lib/oracle/12.2/
 # 解压安装包并设置Oracle环境变量
+RUN chmod 777 /usr/lib/oracle/12.2/
 RUN unzip /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip -d /usr/lib/oracle/12.2/
 RUN rm /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip
 RUN ln -s /usr/lib/oracle/12.2/instantclient_19_8 $ORACLE_HOME
