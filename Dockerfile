@@ -1,6 +1,7 @@
 # 使用基于Ubuntu的Docker镜像作为基础
 FROM ubuntu:latest
-
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
 # 设置环境变量
 ENV ORACLE_HOME=/usr/lib/oracle/12.2/client64
 ENV LD_LIBRARY_PATH=$ORACLE_HOME/lib
