@@ -17,6 +17,7 @@ RUN apt-get update && \
 # 下载Oracle Instant Client安装包
 ADD https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip /tmp/
 
+RUN mkdir -p /usr/lib/oracle/12.2/
 # 解压安装包并设置Oracle环境变量
 RUN unzip /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip -d /usr/lib/oracle/12.2/ && \
     rm /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip && \
