@@ -1,5 +1,5 @@
 # 使用基于Ubuntu的Docker镜像作为基础
-FROM ubuntu:latest
+FROM registry.cn-beijing.aliyuncs.com/yingjunnan/ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Shanghai
 # 设置环境变量
