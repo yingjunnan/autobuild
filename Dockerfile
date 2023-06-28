@@ -9,8 +9,8 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 
 # 安装必要的软件包
 RUN apt-get update && \
-    apt-get install -y nginx unzip php-fpm php-pear php-dev libaio-dev \
-    php-mysql php-redis && \
+    apt-get install -y nginx php7.4-fpm php7.4-pear php7.4-dev libaio-dev \
+    php7.4-mysql php7.4-redis unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /usr/lib/oracle/12.2 && chmod 777 /usr/lib/oracle/12.2
@@ -33,6 +33,11 @@ EXPOSE 80
 # 配置PHP-FPM
 # COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 
-# 启动Nginx和PHP-FPM服务
-# 启动Nginx和PHP-FPM服务
-CMD ["nginx", "-g", "daemon off;", "&", "php-fpm8.1", "-F"]
+# 复制启动脚本
+COPY start.sh /start.sh
+
+# 修改脚本权限
+RUN chmod +x /start.sh
+
+# 启动脚本
+CMD ["/start.sh"]
