@@ -17,14 +17,14 @@ RUN apt-get update && \
 # 下载Oracle Instant Client安装包
 ADD https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip /tmp/
 
-RUN mkdir -p /usr/lib/oracle/12.2/
 # 解压安装包并设置Oracle环境变量
-RUN chmod 777 /usr/lib/oracle/12.2/
-RUN unzip /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip -d /usr/lib/oracle/12.2/
-RUN rm /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip
-RUN ln -s /usr/lib/oracle/12.2/instantclient_19_8 $ORACLE_HOME
-RUN echo $ORACLE_HOME > /etc/ld.so.conf.d/oracle.conf
-RUN ldconfig
+RUN unzip /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip -d /usr/lib/oracle/12.2/ && \
+    rm /tmp/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip && \
+    ln -s /usr/lib/oracle/12.2/instantclient_19_8 $ORACLE_HOME && \
+    echo $ORACLE_HOME > /etc/ld.so.conf.d/oracle.conf && \
+    ldconfig
+
+EXPOSE 80
 
 # 配置Nginx
 # COPY nginx.conf /etc/nginx/nginx.conf
