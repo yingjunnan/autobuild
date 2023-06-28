@@ -34,4 +34,5 @@ EXPOSE 80
 # COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 
 # 启动Nginx和PHP-FPM服务
-CMD nginx && php-fpm7.4 -F
+# 启动Nginx和PHP-FPM服务
+CMD ["nginx", "-g", "daemon off;", "&", "php-fpm8.1", "-F"]
